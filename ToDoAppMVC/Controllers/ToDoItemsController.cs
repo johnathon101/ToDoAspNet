@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using ToDoAppMVC.ViewModels;
 using ToDoAppMVC.Models;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Core;
 
 namespace ToDoAppMVC.Controllers
 {
@@ -39,14 +42,14 @@ namespace ToDoAppMVC.Controllers
 					myItem.CreatedOn = DateTime.Now;
 					db.Items.Add(myItem);
 					db.SaveChanges();
-	                return RedirectToAction ("Index");
+	                return RedirectToAction ("Index", "Home");
 				}
 			} catch (Exception ex){
 				throw ex;
 				return View ();
             }
         }
-        
+
         public ActionResult Edit(int id)
         {
 			using (var db = new db_Entities ()) {
@@ -60,9 +63,20 @@ namespace ToDoAppMVC.Controllers
         public ActionResult Edit(int id, FormCollection collection)
         {
             try {
-                return RedirectToAction ("Index");
-            } catch {
-                return View ();
+				using (var db = new db_Entities ()) {
+					Item updatedItem = ToDoViewModel.ToItem(collection);
+					Item myItem = db.Items.FirstOrDefault(i=> i.ItemId == updatedItem.ItemId);
+					if(myItem != null){
+						myItem.Description = updatedItem.Description;
+						myItem.Name = updatedItem.Name;
+						myItem.CompletedOn = updatedItem.CompletedOn;
+						db.SaveChanges();
+					}
+					return RedirectToAction ("Index", "Home");
+				}
+			} catch (Exception ex)
+			{
+				return RedirectToAction ("Index", "Home");
             }
         }
 

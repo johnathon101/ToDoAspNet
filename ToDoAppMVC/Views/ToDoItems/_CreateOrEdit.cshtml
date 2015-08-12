@@ -1,7 +1,6 @@
 ﻿@model ToDoAppMVC.Models.Item
 
 
-@*Html.HiddenFor(model => model.Id)*@
 <p>
     @Html.LabelFor(model => model.Name)
     @Html.TextBoxFor(model => model.Name)    
@@ -14,3 +13,4 @@
     @Html.LabelFor(model => model.CompletedOn)
     @Html.TextBoxFor(model => model.CompletedOn, new {@type="date"})    
 </p>
+@Html.TextBoxFor(model => model.ItemId, new{@style="visibilty:hidden;"})

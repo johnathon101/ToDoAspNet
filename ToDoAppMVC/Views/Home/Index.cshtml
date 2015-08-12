@@ -2,12 +2,13 @@
 @*{
 	Layout = "/Views/Shared/_Layout.cshtml";
 }*@
-<h2>Welcome to ASP.NET MVC @ViewData["Version"] on @ViewData["Runtime"]!</h2>
 
 @foreach(var i in Model.Items)
 {
 	<h3 class='todo-title' data-id="@i.ItemId">
-	@(i.CreatedOn != null ? "<img style='height:60px;' class='check-it' src='/Content/check.jpeg' />" : "")
+	@if(i.CompletedOn != null) {
+		<img style='height:60px;' class='check-it' src='/Content/check.jpeg' />
+	}
 	@i.Name</h3>
 }
 <div id="InfoBlock"></div>

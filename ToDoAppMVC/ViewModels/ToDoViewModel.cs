@@ -24,12 +24,15 @@ namespace ToDoAppMVC.ViewModels
 
 		public static Item ToItem(FormCollection formCollection)
 		{
-
+			DateTime completedOn;
+			var haveDate = DateTime.TryParse(formCollection["CompletedOn"], out completedOn);
+			int itemId = 0;
+			int.TryParse(formCollection["ItemId"], out itemId);
 			var item = new Item {
+				ItemId = itemId,
 				Name = formCollection["Name"],
 				Description = formCollection["Description"],
-				//CreatedOn = DateTime.ParseExact(formCollection["CreatedOn"], "MM/dd/yyyy", CultureInfo.CurrentCulture),
-				//CompletedOn = DateTime.ParseExact(formCollection["CompletedOn"], "MM/dd/yyyy", CultureInfo.CurrentCulture),
+				CompletedOn = haveDate ? completedOn : default(DateTime),
 
 			};
 			return item;
