@@ -1,0 +1,18 @@
+﻿@model ToDoAppMVC.Models.Item
+
+<div class="row">
+    <div class="columns six centered panel">
+        <form action='@string.Format("/ToDoItems/Edit/{0}",Model.ItemId)' method="post">
+            @Html.Partial("_CreateOrEdit", Model)
+            <p>
+    			@Html.LabelFor(model => model.CreatedOn)
+    			@Html.TextBoxFor(model => model.CreatedOn, new {@type="date"})    
+			</p>
+            <div class="row">
+                <div class="six columns">
+                    <button tyßpe="submit" class="button radius expand success">Save</button>
+                </div>
+            </div>
+            </form>
+    </div>
+</div>

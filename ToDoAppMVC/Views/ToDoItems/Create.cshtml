@@ -1,0 +1,15 @@
+﻿@model ToDoAppMVC.Models.Item
+
+
+  <form action="/ToDoItems/Create" method="post">
+      @Html.Partial("_CreateOrEdit", Model)
+        
+      <div class="row">
+          <div class="six columns">
+              @*H2tml.ActionLink("Back to List", "Index", "", new { @class = "button radius expand secondary" })*@
+          </div>
+          <div class="six columns">
+              <button type="submit" class="button radius expand success">Save</button>
+          </div>
+      </div>
+ </form>
