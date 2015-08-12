@@ -32,7 +32,7 @@ namespace ToDoAppMVC.ViewModels
 				ItemId = itemId,
 				Name = formCollection["Name"],
 				Description = formCollection["Description"],
-				CompletedOn = haveDate ? completedOn : default(DateTime),
+				CompletedOn = haveDate ? completedOn : (DateTime?) null,
 
 			};
 			return item;

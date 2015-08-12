@@ -2,7 +2,7 @@
 @*{
 	Layout = "/Views/Shared/_Layout.cshtml";
 }*@
-
+<div class='half-split'>
 @foreach(var i in Model.Items)
 {
 	<h3 class='todo-title' data-id="@i.ItemId">
@@ -11,4 +11,5 @@
 	}
 	@i.Name</h3>
 }
-<div id="InfoBlock"></div>
+</div>
+<div id="InfoBlock" class='half-split'></div>
